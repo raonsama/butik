@@ -54,7 +54,7 @@ def get_stealth_headers(url):
 def extract_error(html):
     # Sesuaikan 'class="notice"' dengan template hotspot
     # untuk menangkap pesan error.
-    match = re.search(r'class="notice">(.*?)</div>', html)
+    match = re.search(r'class="class="[^"]*notice[^"]*">(.*?)</div>">(.*?)</div>', html, re.DOTALL)
     return match.group(1).strip() if match else "Invalid credentials"
 
 def main():
