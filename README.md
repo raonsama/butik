@@ -45,6 +45,7 @@ success = success.txt
 
 - [SETTINGS]:
 	- charset: Kumpulan karakter yang akan digunakan untuk menyusun kode voucher acak.
+    - error_class: Nama class untuk menangkap pesan error
 	- length: Panjang digit kode voucher yang akan diuji.
 	- delay_min & delay_max: Rentang waktu jeda minimum dan maksimum (dalam detik) antar-permintaan request.
 
