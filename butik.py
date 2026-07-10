@@ -51,10 +51,11 @@ def get_stealth_headers(url):
         'Referer': url
     }
 
-def extract_error(html):
+def extract_error(html, error_class="notice"):
     # Sesuaikan 'class="notice"' dengan template hotspot
     # untuk menangkap pesan error.
-    match = re.search(r'class="class="[^"]*notice[^"]*">(.*?)</div>">(.*?)</div>', html, re.DOTALL)
+    pattern = rf'class="[^"]*{error_class}[^"]*">(.*?)</div>'
+    match = re.search(pattern, html, re.DOTALL)
     return match.group(1).strip() if match else "Invalid credentials"
 
 def main():
@@ -66,6 +67,7 @@ def main():
     login_url = target_base + "login"
 
     charset = conf['SETTINGS']['charset']
+    error_class = conf['SETTINGS']['error_class']
     length = int(conf['SETTINGS']['length'])
     d_min = float(conf['SETTINGS']['delay_min'])
     d_max = float(conf['SETTINGS']['delay_max'])
@@ -125,7 +127,7 @@ def main():
 
                     os._exit(0)
 
-                error_msg = extract_error(res_post.text)
+                error_msg = extract_error(res_post.text, error_class)
                 print(f" [{c.oc}{active_method}{c.n}] Code: {c.purple}{code}{c.n} | Res: {c.warn}{error_msg}{c.n}", flush=True)
 
                 history.add(code)
