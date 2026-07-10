@@ -28,6 +28,7 @@ url = [http://10.10.10.1/](http://10.10.10.1/)
 
 [SETTINGS]
 charset = abcdefghijklmnopqrstuvwxyz0123456789
+error_class = notice
 length = 5
 delay_min = 0.5
 delay_max = 1.5
